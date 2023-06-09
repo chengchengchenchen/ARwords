@@ -15,6 +15,9 @@
 		3938C8DA2A3379F5002FBA96 /* ARwordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3938C8D92A3379F5002FBA96 /* ARwordsTests.swift */; };
 		3938C8E42A3379F5002FBA96 /* ARwordsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3938C8E32A3379F5002FBA96 /* ARwordsUITests.swift */; };
 		3938C8E62A3379F5002FBA96 /* ARwordsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3938C8E52A3379F5002FBA96 /* ARwordsUITestsLaunchTests.swift */; };
+		3938C8F42A337A58002FBA96 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3938C8F22A337A58002FBA96 /* Model.xcdatamodeld */; };
+		3938C8F62A337A9B002FBA96 /* word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3938C8F52A337A9B002FBA96 /* word.swift */; };
+		3938C8F82A337ACB002FBA96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3938C8F72A337ACB002FBA96 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		3938C8DF2A3379F5002FBA96 /* ARwordsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARwordsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3938C8E32A3379F5002FBA96 /* ARwordsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARwordsUITests.swift; sourceTree = "<group>"; };
 		3938C8E52A3379F5002FBA96 /* ARwordsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARwordsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3938C8F32A337A58002FBA96 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		3938C8F52A337A9B002FBA96 /* word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = word.swift; sourceTree = "<group>"; };
+		3938C8F72A337ACB002FBA96 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,7 @@
 		3938C8BA2A3379F4002FBA96 = {
 			isa = PBXGroup;
 			children = (
+				3938C8F22A337A58002FBA96 /* Model.xcdatamodeld */,
 				3938C8C52A3379F4002FBA96 /* ARwords */,
 				3938C8D82A3379F5002FBA96 /* ARwordsTests */,
 				3938C8E22A3379F5002FBA96 /* ARwordsUITests */,
@@ -96,6 +103,8 @@
 		3938C8C52A3379F4002FBA96 /* ARwords */ = {
 			isa = PBXGroup;
 			children = (
+				3938C8F52A337A9B002FBA96 /* word.swift */,
+				3938C8F72A337ACB002FBA96 /* ViewController.swift */,
 				3938C8C62A3379F4002FBA96 /* AppDelegate.swift */,
 				3938C8C82A3379F4002FBA96 /* ContentView.swift */,
 				3938C8CA2A3379F4002FBA96 /* Experience.rcproject */,
@@ -260,9 +269,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3938C8F82A337ACB002FBA96 /* ViewController.swift in Sources */,
 				3938C8C92A3379F4002FBA96 /* ContentView.swift in Sources */,
 				3938C8C72A3379F4002FBA96 /* AppDelegate.swift in Sources */,
 				3938C8CB2A3379F4002FBA96 /* Experience.rcproject in Sources */,
+				3938C8F42A337A58002FBA96 /* Model.xcdatamodeld in Sources */,
+				3938C8F62A337A9B002FBA96 /* word.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +443,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -462,6 +475,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -591,6 +605,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3938C8F22A337A58002FBA96 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3938C8F32A337A58002FBA96 /* Model.xcdatamodel */,
+			);
+			currentVersion = 3938C8F32A337A58002FBA96 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3938C8BB2A3379F4002FBA96 /* Project object */;
 }

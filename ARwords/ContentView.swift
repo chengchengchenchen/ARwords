@@ -8,29 +8,38 @@
 import SwiftUI
 import RealityKit
 
+var type = 1
+var ind = 0
+
 struct ContentView : View {
+    var arViewContainer = ARViewController()
     var body: some View {
-        ARViewContainer().edgesIgnoringSafeArea(.all)
+        
+        VStack{
+            
+            ARViewController().edgesIgnoringSafeArea(.all)
+            HStack{
+                Button(action: {type = 1}){Text("add")}
+                Button(action: {type = 2}){Text("delete")}
+                Button(action: {type = 3}){Text("show")}
+            }
+
+        }
+        
     }
 }
 
-struct ARViewContainer: UIViewRepresentable {
-    
-    func makeUIView(context: Context) -> ARView {
-        
-        let arView = ARView(frame: .zero)
-        
-        // Load the "Box" scene from the "Experience" Reality File
-        let boxAnchor = try! Experience.loadBox()
-        
-        // Add the box anchor to the scene
-        arView.scene.anchors.append(boxAnchor)
-        
-        return arView
-        
+struct ARViewController: UIViewControllerRepresentable {
+    let viewController = ViewController()
+    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
+        //
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    func makeUIViewController(context: Context) -> ViewController {
+        //create a instance of ViewController
+        
+        return viewController
+    }
     
 }
 
