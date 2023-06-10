@@ -66,10 +66,15 @@ class ViewController: UIViewController, ARSessionDelegate {
             }else if(type==2){
                 let entity = arView.entity(at: tapLocation)
                 if entity?.children.first != nil{
-                    entity?.removeFromParent()
-                    if let index = models.firstIndex(of: entity!){
-                        models.remove(at: index)
+                    let transform = Transform(scale: .init(x: 0.5, y: 0.5, z: 0.5),rotation: simd_quatf(),translation:[0,10,0])
+                    entity?.move(to: transform, relativeTo: entity, duration: 1, timingFunction: .easeInOut)
+                    DispatchQueue.main.asyncAfter(deadline: .now()+1){ [self] in
+                        entity?.removeFromParent()
+                        if let index = self.models.firstIndex(of: entity!){
+                            models.remove(at: index)
+                        }
                     }
+                    
                 }
             }else if(type==3){
                 let entity = arView.entity(at: tapLocation)
