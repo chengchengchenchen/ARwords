@@ -10,6 +10,15 @@ struct Word{
     var Eng:String
     var Cn:String
     var t:Int
+    var isLabeled:Bool
+    var isDeleted:Bool
+    init(Eng: String, Cn: String, t: Int) {
+        self.Eng = Eng
+        self.Cn = Cn
+        self.t = t
+        self.isLabeled = false
+        self.isDeleted = false
+    }
 }
 
 let wordType = ["","v.", "n.", "adj."]

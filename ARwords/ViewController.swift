@@ -24,49 +24,50 @@ class ViewController: UIViewController, ARSessionDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         arView.session.delegate = self
         arView.environment.sceneUnderstanding.options = []
         arView.environment.sceneUnderstanding.options.insert(.occlusion)
         arView.environment.sceneUnderstanding.options.insert(.physics)
-        arView.debugOptions.insert(.showSceneUnderstanding)
+        //arView.debugOptions.insert(.showSceneUnderstanding)
         //arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
         arView.automaticallyConfigureSession = false
         let configuration = ARWorldTrackingConfiguration()
         configuration.sceneReconstruction = .mesh
         configuration.environmentTexturing = .automatic
         configuration.isLightEstimationEnabled=true
-        configuration.planeDetection=[.horizontal,.vertical]
+        //configuration.planeDetection=[.horizontal,.vertical]
         arView.session.run(configuration)
-       
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         arView.addGestureRecognizer(tapRecognizer)
         
-    
     }
-
+    
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
-
+    
     @objc
     func handleTap(_ sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: arView)
         if let result = arView.raycast(from: tapLocation, allowing: .estimatedPlane, alignment: .horizontal).first {
             let resultAnchor = AnchorEntity(world: result.worldTransform)
-            if(type==1){
+            switch (type){
+            case 1:
                 let entity = wordModel(word: words[ind], color: .black)
                 resultAnchor.addChild(entity)
                 models.append(entity)
                 ind=(ind+1)%words.capacity
-            }else if(type==2){
+                break
+            case 2:
                 let entity = arView.entity(at: tapLocation)
                 if entity?.children.first != nil{
-                    let transform = Transform(scale: .init(x: 0.5, y: 0.5, z: 0.5),rotation: simd_quatf(),translation:[0,10,0])
+                    let transform = Transform(scale: .init(x: 0.3, y: 0.3, z: 0.3),rotation: simd_quatf(),translation:[0,0,0])
                     entity?.move(to: transform, relativeTo: entity, duration: 1, timingFunction: .easeInOut)
                     DispatchQueue.main.asyncAfter(deadline: .now()+1){ [self] in
                         entity?.removeFromParent()
@@ -74,19 +75,36 @@ class ViewController: UIViewController, ARSessionDelegate {
                             models.remove(at: index)
                         }
                     }
-                    
                 }
-            }else if(type==3){
+                break
+            case 3:
                 let entity = arView.entity(at: tapLocation)
                 if let firstChild = entity?.children.first{
                     firstChild.isEnabled.toggle()
                 }
+                break
+            case 4:
+                let entity = arView.entity(at: tapLocation)
+                if entity?.children.first != nil{
+                    // 判断是否为ModelEntity
+                    guard let modelEntiy = entity as? ModelEntity else { break }
+                    var material = SimpleMaterial()
+                    material.color = .init(tint: .red)
+                    modelEntiy.model?.materials[0] = material
+                    if let firstChild = entity?.children.first{
+                        guard let childeModelEntity = firstChild as? ModelEntity else { break }
+                        childeModelEntity.model?.materials[0]=material
+                    }
+                }
+                break
+            default:
+                type=1
             }
-        
+            
             arView.scene.addAnchor(resultAnchor )
         }
     }
-
+    
     
     func wordModel(word: Word, color: UIColor)->ModelEntity{
         let word_ = ModelEntity(mesh: .generateText(word.Eng), materials: [SimpleMaterial(color: color, isMetallic: false)])
@@ -96,12 +114,12 @@ class ViewController: UIViewController, ARSessionDelegate {
         
         word_.addChild(wordChild )
         wordChild.isEnabled=false
-        wordChild.transform.translation.y-=15
+        wordChild.transform.translation.y+=15
         word_.scale=SIMD3(repeating: 0.01)
-        word_.transform.translation.y+=0.15
+        //word_.transform.translation.y+=0.15
         word_.generateCollisionShapes(recursive: true )
         arView.installGestures(.all, for: word_)
-
+        
         return word_
         
     }
@@ -123,7 +141,7 @@ class ViewController: UIViewController, ARSessionDelegate {
             
             // 调整模型实体的位置，使其位于平面锚点的中心
             model.position = [planeAnchor.center.x, planeAnchor.center.y, planeAnchor.center.z]
-
+            
             arView.scene.addAnchor(anchorEntity)
             modelCount += 1
         }

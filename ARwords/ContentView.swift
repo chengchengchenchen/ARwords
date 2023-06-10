@@ -22,6 +22,7 @@ struct ContentView : View {
                 Button(action: {type = 1}){Text("add")}
                 Button(action: {type = 2}){Text("delete")}
                 Button(action: {type = 3}){Text("show")}
+                Button(action: {type = 4}){Text("label")}
             }
 
         }
