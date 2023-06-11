@@ -9,18 +9,27 @@ import ARKit
 import RealityKit
 import SceneKit
 import Combine
-var gestureStartLocation: SIMD3<Float>?
-var cubeEntity: ModelEntity?
-
+import SwiftUI
 class ViewController: UIViewController, ARSessionDelegate {
-    var modelCount = 0
+    @Binding var modelCount: Int // 声明一个@Binding变量来接收modelCount变量
+    @Binding var type: Int
     var models:[Entity]=[]
     //模型向单词ID的映射
     var dict = [ModelEntity: Int]()
+    
+    
     var arView:ARView{
         return self.view as! ARView
     }
-    
+    init(modelCount: Binding<Int>, type: Binding<Int>) { // 初始化时接收modelCount变量
+        self._modelCount = modelCount
+        self._type = type
+        super.init(nibName: nil, bundle: nil)
+    }
+       
+       required init?(coder aDecoder: NSCoder) {
+           fatalError("init(coder:) has not been implemented")
+       }
     override func loadView() {
         self.view = ARView(frame: .zero)
     }
@@ -60,7 +69,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         let tapLocation = sender.location(in: arView)
         if let result = arView.raycast(from: tapLocation, allowing: .estimatedPlane, alignment: .horizontal).first {
             let resultAnchor = AnchorEntity(world: result.worldTransform)
-            switch (type){
+            switch (self.type){
             case 1:
                 let entity = wordModel(word: words[ind], color: .black)
                 resultAnchor.addChild(entity)
