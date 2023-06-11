@@ -21,15 +21,19 @@ class ViewController: UIViewController, ARSessionDelegate {
     var arView:ARView{
         return self.view as! ARView
     }
+    // Load audio files
+    let audioPick = try! AudioFileResource.load(named: "audiodown/pick.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
+    let audioPlace = try! AudioFileResource.load(named: "audiodown/place.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
+    
     init(modelCount: Binding<Int>, type: Binding<Int>) { // 初始化时接收modelCount变量
         self._modelCount = modelCount
         self._type = type
         super.init(nibName: nil, bundle: nil)
     }
        
-       required init?(coder aDecoder: NSCoder) {
-           fatalError("init(coder:) has not been implemented")
-       }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func loadView() {
         self.view = ARView(frame: .zero)
     }
@@ -74,9 +78,11 @@ class ViewController: UIViewController, ARSessionDelegate {
                 let entity = wordModel(word: words[ind], color: .black)
                 resultAnchor.addChild(entity)
                 arView.scene.addAnchor(resultAnchor)
+                entity.playAudio(audioPlace)
                 models.append(entity)
                 dict[entity] = words[ind].id
-                print(dict[entity]!)
+                
+                //print(dict[entity]!)
                 /*没效果，不明白原因
                 var subscrible:Cancellable!
                 subscrible = arView.scene.subscribe(to: SceneEvents.Update.self){_ in
@@ -91,8 +97,11 @@ class ViewController: UIViewController, ARSessionDelegate {
                 let entity = arView.entity(at: tapLocation)
                 if entity?.children.first != nil{
                     let transform = Transform(scale: .init(x: 0.3, y: 0.3, z: 0.3),rotation: simd_quatf(),translation:[0,0,0])
+                    
                     entity?.move(to: transform, relativeTo: entity, duration: 1, timingFunction: .easeInOut)
+                    entity?.playAudio(audioPick)
                     DispatchQueue.main.asyncAfter(deadline: .now()+1){ [self] in
+                        
                         entity?.removeFromParent()
                         if let index = self.models.firstIndex(of: entity!){
                             models.remove(at: index)
