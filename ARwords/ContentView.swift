@@ -15,16 +15,50 @@ struct ContentView : View {
     var arViewContainer = ARViewController()
     var body: some View {
         
-        VStack{
+        HStack{
             
+            
+            VStack{
+                
+                Button(action: {
+                    //退出逻辑写在这
+                    //type=1
+                    
+                }){
+                    Image(systemName: "chevron.left")
+                }.padding()
+                Spacer()
+                Button(action: {type = 1}){
+                    VStack{
+                        //Text("add")
+                        Image(systemName: "plus")
+                    }
+                    
+                }.padding()
+                Button(action: {type = 2}){
+                    VStack{
+                        //Text("add")
+                        Image(systemName: "checkmark")
+                    }
+                    
+                }.padding()
+                Button(action: {type = 3}){
+                    VStack{
+                        //Text("show")
+                        Image(systemName: "eye")
+                    }
+                    
+                }.padding()
+                Button(action: {type = 4}){
+                    VStack{
+                        //Text("label")
+                        Image(systemName: "flag")
+                    }
+                    
+                }.padding()
+                Spacer()
+            }.background(.ultraThinMaterial)
             ARViewController().edgesIgnoringSafeArea(.all)
-            HStack{
-                Button(action: {type = 1}){Text("add")}
-                Button(action: {type = 2}){Text("delete")}
-                Button(action: {type = 3}){Text("show")}
-                Button(action: {type = 4}){Text("label")}
-            }
-
         }
         
     }

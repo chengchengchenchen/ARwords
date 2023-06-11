@@ -4,7 +4,7 @@
 //
 //  Created by qjc on 2023/6/9.
 //
-
+var skip=0
 import Foundation
 struct Word{
     var Eng:String
@@ -12,12 +12,15 @@ struct Word{
     var t:Int
     var isLabeled:Bool
     var isDeleted:Bool
+    var id:Int
     init(Eng: String, Cn: String, t: Int) {
         self.Eng = Eng
         self.Cn = Cn
         self.t = t
         self.isLabeled = false
         self.isDeleted = false
+        self.id=skip
+        skip += 1
     }
 }
 

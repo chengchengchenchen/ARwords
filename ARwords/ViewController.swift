@@ -8,12 +8,15 @@
 import ARKit
 import RealityKit
 import SceneKit
+import Combine
 var gestureStartLocation: SIMD3<Float>?
 var cubeEntity: ModelEntity?
 
 class ViewController: UIViewController, ARSessionDelegate {
     var modelCount = 0
     var models:[Entity]=[]
+    //模型向单词ID的映射
+    var dict = [ModelEntity: Int]()
     var arView:ARView{
         return self.view as! ARView
     }
@@ -61,7 +64,18 @@ class ViewController: UIViewController, ARSessionDelegate {
             case 1:
                 let entity = wordModel(word: words[ind], color: .black)
                 resultAnchor.addChild(entity)
+                arView.scene.addAnchor(resultAnchor)
                 models.append(entity)
+                dict[entity] = words[ind].id
+                print(dict[entity]!)
+                /*没效果，不明白原因
+                var subscrible:Cancellable!
+                subscrible = arView.scene.subscribe(to: SceneEvents.Update.self){_ in
+                    print(self.models.capacity)
+                    self.models[self.models.capacity-1].look(at: self.arView.cameraTransform.translation, from: entity.position(relativeTo: nil), upVector: [0,1,0],relativeTo: nil)
+                }
+                */
+                
                 ind=(ind+1)%words.capacity
                 break
             case 2:
@@ -74,6 +88,8 @@ class ViewController: UIViewController, ARSessionDelegate {
                         if let index = self.models.firstIndex(of: entity!){
                             models.remove(at: index)
                         }
+                        //print(dict[entity as! ModelEntity]!)
+                        dict.removeValue(forKey: entity as! ModelEntity)
                     }
                 }
                 break
@@ -110,7 +126,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         let word_ = ModelEntity(mesh: .generateText(word.Eng), materials: [SimpleMaterial(color: color, isMetallic: false)])
         let wordChild = ModelEntity(mesh: .generateText(wordType[word.t]+word.Cn), materials: [SimpleMaterial(color: color, isMetallic: false)])
         //let cameraTransform = arView.cameraTransform
-        //word_.look(at: cameraTransform.translation, from: word_.transform.translation, upVector: .init(-1, 0, 0), relativeTo: nil)
+        //word_.look(at: cameraTransform.translation, from: word_.transform.translation, upVector: .init(0, 1, 0), relativeTo: nil)
         
         word_.addChild(wordChild )
         wordChild.isEnabled=false
@@ -124,6 +140,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         
     }
     
+    /*平面检测对于本app效果不好
     // 当检测到新的平面锚点时，该方法会被调用
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         for anchor in anchors {
@@ -145,5 +162,5 @@ class ViewController: UIViewController, ARSessionDelegate {
             arView.scene.addAnchor(anchorEntity)
             modelCount += 1
         }
-    }
+    }*/
 }
