@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22158.8" systemVersion="23A5257q" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="WordBookP" representedClassName="WordBookP" syncable="YES">
+        <attribute name="batchFinished" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="batchLeft" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="batchSize" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="capacity" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastVisitTime" attributeType="Date" defaultDateTimeInterval="708094560" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString="WordBook"/>
+        <attribute name="wordMemorized" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wordVisited" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="contains" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WordP" inverseName="inside" inverseEntity="WordP"/>
+    </entity>
+    <entity name="WordP" representedClassName="WordP" syncable="YES">
+        <attribute name="chinese" attributeType="String"/>
+        <attribute name="english" attributeType="String"/>
+        <attribute name="forgotCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="ifForgot" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="ifMemorized" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="memorizedCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="occurredCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="inside" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WordBookP" inverseName="contains" inverseEntity="WordBookP"/>
+    </entity>
+</model>
