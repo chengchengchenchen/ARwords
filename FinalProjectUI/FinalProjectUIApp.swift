@@ -11,7 +11,8 @@ import SwiftUI
 struct FinalProjectUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+ContentView()
+//            ARContentView()
         }
     }
 }

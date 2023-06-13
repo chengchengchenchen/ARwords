@@ -13,42 +13,51 @@ struct WordList: View {
     @State var isShowingAddWordView = false
     @State var isShowingActionSheet = false
     @State var isShowingAlert = false
+    @State var isShowArView = false
     
     var name: String
     
     var body: some View {
+//        if
             VStack {
                 listView
-                
-                NavigationView {
+                Spacer()
+//                NavigationView {
                     HStack {
                         Button {
                             @State var tmpWord: WordP = WordP(id: words.count, english: "", chinese: "")
                             isShowingAddWordView.toggle()
                         } label: {
                             Text("添加单词")
-                                .font(.title)
+//                                .font(.title)
                         }
                         .buttonStyle(BorderedButtonStyle())
                         .padding(.trailing)
                         .sheet(isPresented: $isShowingAddWordView, content: {
                             AddWordForm(words: $words)
                         })
-                        Button {
-                            
-                        } label: {
-                            Text("进入AR宫殿")
-                                .font(.title)
+
+                        NavigationLink(destination: ARContentView()) {
+                            Text("AR them!")
                         }
                         .buttonStyle(BorderedButtonStyle())
+                        .padding(.trailing)
+                        .navigationBarBackButtonHidden(true)
+
+//                            .isDetailLink(false)
+//                        } label: {
+//                            Text("进入AR宫殿")
+//                                .font(.title)
+//                        }
+//                        .buttonStyle(BorderedButtonStyle())
                     }
                     .padding(.top)
                 }
-                .frame(height: 40)
+//                .frame(height: 40)
                 
-            }
-            .navigationTitle(name)
-            .navigationBarTitleDisplayMode(.inline)
+//            }
+//            .navigationTitle(name)
+//            .navigationBarTitleDisplayMode(.inline)
     }
     
     var listView: some View {

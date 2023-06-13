@@ -21,6 +21,10 @@
 		5D755A082A346D3200052CB9 /* WordBookDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D755A072A346D3200052CB9 /* WordBookDisplay.swift */; };
 		5D755A0D2A3487F400052CB9 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D755A0C2A3487F400052CB9 /* ChartData.swift */; };
 		5D755A0F2A348EB400052CB9 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D755A0E2A348EB400052CB9 /* PieChart.swift */; };
+		B81189B42A377FFB0063BE4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81189B32A377FFB0063BE4A /* ViewController.swift */; };
+		B81189B62A37804F0063BE4A /* ARContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81189B52A37804F0063BE4A /* ARContentView.swift */; };
+		B81189B82A37819C0063BE4A /* word.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81189B72A37819C0063BE4A /* word.swift */; };
+		B81189BA2A3787720063BE4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81189B92A3787720063BE4A /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +43,11 @@
 		5D755A072A346D3200052CB9 /* WordBookDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBookDisplay.swift; sourceTree = "<group>"; };
 		5D755A0C2A3487F400052CB9 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		5D755A0E2A348EB400052CB9 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
+		B81189B32A377FFB0063BE4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B81189B52A37804F0063BE4A /* ARContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARContentView.swift; sourceTree = "<group>"; };
+		B81189B72A37819C0063BE4A /* word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = word.swift; sourceTree = "<group>"; };
+		B81189B92A3787720063BE4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B81189BB2A3787F80063BE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +64,7 @@
 		5D7559E22A334E7900052CB9 = {
 			isa = PBXGroup;
 			children = (
+				B81189B22A377FD80063BE4A /* ARView */,
 				5D7559ED2A334E7900052CB9 /* FinalProjectUI */,
 				5D7559EC2A334E7900052CB9 /* Products */,
 			);
@@ -71,6 +81,7 @@
 		5D7559ED2A334E7900052CB9 /* FinalProjectUI */ = {
 			isa = PBXGroup;
 			children = (
+				B81189BB2A3787F80063BE4A /* Info.plist */,
 				5D7559EE2A334E7900052CB9 /* FinalProjectUIApp.swift */,
 				5D755A002A336B5E00052CB9 /* Models */,
 				5D7559FC2A33698B00052CB9 /* Views */,
@@ -119,6 +130,17 @@
 				5D755A0E2A348EB400052CB9 /* PieChart.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B81189B22A377FD80063BE4A /* ARView */ = {
+			isa = PBXGroup;
+			children = (
+				B81189B32A377FFB0063BE4A /* ViewController.swift */,
+				B81189B52A37804F0063BE4A /* ARContentView.swift */,
+				B81189B72A37819C0063BE4A /* word.swift */,
+				B81189B92A3787720063BE4A /* AppDelegate.swift */,
+			);
+			path = ARView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,17 +214,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D755A0F2A348EB400052CB9 /* PieChart.swift in Sources */,
+				B81189B62A37804F0063BE4A /* ARContentView.swift in Sources */,
 				5D6584222A371319006B4CC4 /* AddWordForm.swift in Sources */,
 				5D7559F12A334E7900052CB9 /* ContentView.swift in Sources */,
 				5D755A022A336B8B00052CB9 /* Word.swift in Sources */,
 				5D755A062A3469F900052CB9 /* WordBook.swift in Sources */,
 				5D755A0D2A3487F400052CB9 /* ChartData.swift in Sources */,
 				5D6584202A36FF4D006B4CC4 /* EditWordView.swift in Sources */,
+				B81189BA2A3787720063BE4A /* AppDelegate.swift in Sources */,
 				5D7559EF2A334E7900052CB9 /* FinalProjectUIApp.swift in Sources */,
+				B81189B42A377FFB0063BE4A /* ViewController.swift in Sources */,
 				5D755A042A336D5A00052CB9 /* WordRow.swift in Sources */,
 				5D65841E2A35ACAB006B4CC4 /* MainUIView.swift in Sources */,
 				5D7559FF2A336B2D00052CB9 /* WordList.swift in Sources */,
 				5D755A082A346D3200052CB9 /* WordBookDisplay.swift in Sources */,
+				B81189B82A37819C0063BE4A /* word.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +360,7 @@
 				DEVELOPMENT_TEAM = 7534696NVV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FinalProjectUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -363,6 +390,7 @@
 				DEVELOPMENT_TEAM = 7534696NVV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FinalProjectUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
