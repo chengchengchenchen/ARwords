@@ -12,4 +12,5 @@ struct WordP: Identifiable {
     var english: String
     var chinese: String
     var isMemorized: Bool = false
+    var isVisited: Bool = false
 }

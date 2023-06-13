@@ -12,6 +12,7 @@ import RealityKit
 var ind = 0
 
 struct ARContentView : View {
+    @Binding var wordBook: WordBookP
     
     @State var type = 1
     //var arViewContainer = ARViewController()
@@ -31,7 +32,7 @@ struct ARContentView : View {
                     type = 1;
                 }){
                     VStack{
-                        //Text("add")
+                        // place another word
                         Image(systemName: "plus")
                             .foregroundColor(type == 1 ? .red : .blue)
                     }
@@ -41,7 +42,7 @@ struct ARContentView : View {
                     type = 2;
                 }){
                     VStack{
-                        //Text("add")
+                        // mark memorized
                         Image(systemName: "checkmark")
                             .foregroundColor(type == 2 ? .red : .blue)
                     }
@@ -49,7 +50,7 @@ struct ARContentView : View {
                 }.padding()
                 Button(action: {type = 3}){
                     VStack{
-                        //Text("show")
+                        // peek chinese meaning
                         Image(systemName: "eye")
                             .foregroundColor(type == 3 ? .red : .blue)
                     }
@@ -57,7 +58,7 @@ struct ARContentView : View {
                 }.padding()
                 Button(action: {type = 4}){
                     VStack{
-                        //Text("label")
+                        // mark forgot
                         Image(systemName: "flag")
                             .foregroundColor(type == 4 ? .red : .blue)
                     }
@@ -65,16 +66,16 @@ struct ARContentView : View {
                 }.padding()
                 Spacer()
             }.background(.ultraThinMaterial)
-            ARViewController(modelCount: $modelCount,type: $type).edgesIgnoringSafeArea(.all)
+            ARViewController(modelCount: $modelCount, type: $type, wordBook: $wordBook).edgesIgnoringSafeArea(.all)
         }
-        
+        .navigationBarBackButtonHidden()
     }
 }
 
 struct ARViewController: UIViewControllerRepresentable {
-    
     @Binding var modelCount: Int
     @Binding var type: Int
+    @Binding var wordBook: WordBookP
     //let viewController = ViewController(modelCount: $modelCount)
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {
         //
@@ -82,16 +83,16 @@ struct ARViewController: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> ViewController {
         //create a instance of ViewController
-        let viewController = ViewController(modelCount: $modelCount,type: $type)
+        let viewController = ViewController(modelCount: $modelCount, type: $type, wordBook: $wordBook)
         return viewController
     }
     
 }
 
-#if DEBUG
-struct ARContentView_Previews : PreviewProvider {
-    static var previews: some View {
-        ARContentView()
-    }
-}
-#endif
+//#if DEBUG
+//struct ARContentView_Previews : PreviewProvider {
+//    static var previews: some View {
+//        ARContentView()
+//    }
+//}
+//#endif

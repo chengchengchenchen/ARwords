@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WordList: View {
-    @State var words: [WordP]
+    @Binding var wordBook: WordBookP
     @State var isShowingEditWordView = false
     @State var isShowingAddWordView = false
     @State var isShowingActionSheet = false
@@ -18,51 +18,38 @@ struct WordList: View {
     var name: String
     
     var body: some View {
-//        if
+
             VStack {
                 listView
                 Spacer()
-//                NavigationView {
+
                     HStack {
                         Button {
-                            @State var tmpWord: WordP = WordP(id: words.count, english: "", chinese: "")
+                            @State var tmpWord: WordP = WordP(id: wordBook.words.count, english: "", chinese: "")
                             isShowingAddWordView.toggle()
                         } label: {
                             Text("添加单词")
-//                                .font(.title)
                         }
                         .buttonStyle(BorderedButtonStyle())
                         .padding(.trailing)
                         .sheet(isPresented: $isShowingAddWordView, content: {
-                            AddWordForm(words: $words)
+                            AddWordForm(wordBook: $wordBook)
                         })
 
-                        NavigationLink(destination: ARContentView()) {
+                        NavigationLink(destination: ARContentView(wordBook: $wordBook)) {
                             Text("AR them!")
                         }
                         .buttonStyle(BorderedButtonStyle())
                         .padding(.trailing)
-                        .navigationBarBackButtonHidden(true)
-
-//                            .isDetailLink(false)
-//                        } label: {
-//                            Text("进入AR宫殿")
-//                                .font(.title)
-//                        }
-//                        .buttonStyle(BorderedButtonStyle())
+//                        .navigationBarHidden(true)
                     }
                     .padding(.top)
                 }
-//                .frame(height: 40)
-                
-//            }
-//            .navigationTitle(name)
-//            .navigationBarTitleDisplayMode(.inline)
     }
     
     var listView: some View {
         List{
-            ForEach(Array(words.enumerated()), id: \.offset) { index, word in
+            ForEach(Array(wordBook.words.enumerated()), id: \.offset) { index, word in
                 HStack{
                     WordRow(english: word.english, chinese: word.chinese)
                     .swipeActions(edge:.leading) {
@@ -79,20 +66,32 @@ struct WordList: View {
 //                                    }
                         Button("删除") {
                             // delete the selected WordP object
-                            words.remove(at: index)
+                            if (wordBook.words[index].isMemorized) {
+                                wordBook.wordMemorized -= 1
+                            }
+                            if (wordBook.words[index].isVisited) {
+                                wordBook.wordVisited -= 1
+                            }
+                            wordBook.capacity -= 1
+                            wordBook.words.remove(at: index)
                         }
                         .tint(.red)
                         if (word.isMemorized) {
                             Button("标为未背") {
                                 // set word's isMemorized to false
-                                words[index].isMemorized = false
+                                wordBook.words[index].isMemorized = false
+                                wordBook.wordMemorized -= 1
                             }
                             .tint(.secondary)
                         } else {
                             Button("标为已背") {
                                 // set word's isMemorized to true
-                                words[index].isMemorized = true
-                                
+                                wordBook.words[index].isMemorized = true
+                                wordBook.wordMemorized += 1
+                                if (wordBook.words[index].isVisited == false) {
+                                    wordBook.words[index].isVisited = true
+                                    wordBook.wordVisited += 1
+                                }
                             }
                             .tint(.green)
                         }
@@ -100,8 +99,8 @@ struct WordList: View {
                     
                     Spacer()
                     //
-//                                Button($words[index].isMemorized.wrappedValue ? "忘了？" : "会啦！"){
-//                                    words[index].isMemorized.toggle()
+//                                Button($wordBook.words[index].isMemorized.wrappedValue ? "忘了？" : "会啦！"){
+//                                    wordBook.words[index].isMemorized.toggle()
 //                                }
 //                                .foregroundColor(.white)
                 Button("编辑"){
@@ -109,7 +108,7 @@ struct WordList: View {
 //                    isShowingActionSheet.toggle()
                     print(isShowingEditWordView)
                 }
-//                                Toggle(isOn: $words[index].isMemorized) {
+//                                Toggle(isOn: $wordBook.words[index].isMemorized) {
 //                                    Text("已背")
 //                                }
 //
@@ -117,20 +116,33 @@ struct WordList: View {
 //                                Alert(title: Text("编辑"), message: Text("您确定要编辑此项吗？"), primaryButton: .default(Text("确定")), secondaryButton: .cancel())
 //                            }
                 .sheet(isPresented: $isShowingActionSheet, content: {
-                    EditWordView(english: $words[index].english, chinese: $words[index].chinese, isShowing: $isShowingActionSheet)
+                    EditWordView(english: $wordBook.words[index].english, chinese: $wordBook.words[index].chinese, isShowing: $isShowingActionSheet)
                 })
                 .hidden()
             }
                 .listRowBackground(word.isMemorized ? Color.green : Color.secondary)
             }
+//            .onDelete(perform: deleteItem)
         }
     }
+    
+//    func deleteItem(at offsets: IndexSet) {
+//        if wordBook.words.index(atOffsets: offsets)
+//        wordBook.words.remove(atOffsets: offsets)
+//    }
+//    
+//    func addItem() {
+//        wordBook.words.append(newItem)
+//        newItem = ""
+//    }
 }
 
 struct WordList_Previews: PreviewProvider {
-    static let words = [WordP(id: 1, english: "run", chinese: "v. 跑；运行", isMemorized: true), WordP(id: 2, english: "swim", chinese: "v. 游泳", isMemorized: false)]
+    @State static var wordBook = WordBookP(id: 1, wordMemorized: 100, batchFinished: 10, batchLeft: 90, batchSize: 10, capacity: 1000, lastVisitTime: Date(), name: "测试单词本1", wordVisited: 300,
+                                    words: [WordP(id: 1, english: "run", chinese: "v. 跑；运行", isMemorized: true),
+                                            WordP(id: 2, english: "swim", chinese: "v. 游泳", isMemorized: false)])
     
     static var previews: some View {
-        WordList(words: words, name: "测试单词本1")
+        WordList(wordBook: $wordBook, name: "测试单词本1")
     }
 }

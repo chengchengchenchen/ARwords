@@ -11,7 +11,7 @@ struct AddWordForm: View {
     @State var english = ""
     @State var chinese = ""
     @State var isMemorized = false
-    @Binding var words: [WordP]
+    @Binding var wordBook: WordBookP
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -31,7 +31,10 @@ struct AddWordForm: View {
             }
             
             Button {
-                words.append(WordP(id: words.count, english: english, chinese: chinese, isMemorized: isMemorized))
+                wordBook.words.append(WordP(id: UUID().hashValue, english: english, chinese: chinese, isMemorized: isMemorized))
+                wordBook.capacity += 1
+                wordBook.wordMemorized += (isMemorized == true ? 1: 0)
+                wordBook.wordVisited += (isMemorized == true ? 1: 0)
                  presentationMode.wrappedValue.dismiss()
             } label: {
                 Text("添加")
@@ -47,10 +50,10 @@ struct AddWordForm: View {
     }
 }
 
-struct AddWordForm_Previews: PreviewProvider {
-    @State static var words = [WordP(id: 1, english: "run", chinese: "v. 跑；运行", isMemorized: true), WordP(id: 2, english: "swim", chinese: "v. 游泳", isMemorized: false)]
-    
-    static var previews: some View {
-        AddWordForm(words: $words)
-    }
-}
+//struct AddWordForm_Previews: PreviewProvider {
+//    @State static var words = [WordP(id: 1, english: "run", chinese: "v. 跑；运行", isMemorized: true), WordP(id: 2, english: "swim", chinese: "v. 游泳", isMemorized: false)]
+//    
+//    static var previews: some View {
+//        AddWordForm(wordBook: $wordbook)
+//    }
+//}

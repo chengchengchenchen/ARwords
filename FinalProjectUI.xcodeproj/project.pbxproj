@@ -23,8 +23,6 @@
 		5D755A0F2A348EB400052CB9 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D755A0E2A348EB400052CB9 /* PieChart.swift */; };
 		B81189B42A377FFB0063BE4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81189B32A377FFB0063BE4A /* ViewController.swift */; };
 		B81189B62A37804F0063BE4A /* ARContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81189B52A37804F0063BE4A /* ARContentView.swift */; };
-		B81189B82A37819C0063BE4A /* word.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81189B72A37819C0063BE4A /* word.swift */; };
-		B81189BA2A3787720063BE4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81189B92A3787720063BE4A /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,8 +43,6 @@
 		5D755A0E2A348EB400052CB9 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 		B81189B32A377FFB0063BE4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B81189B52A37804F0063BE4A /* ARContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARContentView.swift; sourceTree = "<group>"; };
-		B81189B72A37819C0063BE4A /* word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = word.swift; sourceTree = "<group>"; };
-		B81189B92A3787720063BE4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B81189BB2A3787F80063BE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,8 +133,6 @@
 			children = (
 				B81189B32A377FFB0063BE4A /* ViewController.swift */,
 				B81189B52A37804F0063BE4A /* ARContentView.swift */,
-				B81189B72A37819C0063BE4A /* word.swift */,
-				B81189B92A3787720063BE4A /* AppDelegate.swift */,
 			);
 			path = ARView;
 			sourceTree = "<group>";
@@ -221,14 +215,12 @@
 				5D755A062A3469F900052CB9 /* WordBook.swift in Sources */,
 				5D755A0D2A3487F400052CB9 /* ChartData.swift in Sources */,
 				5D6584202A36FF4D006B4CC4 /* EditWordView.swift in Sources */,
-				B81189BA2A3787720063BE4A /* AppDelegate.swift in Sources */,
 				5D7559EF2A334E7900052CB9 /* FinalProjectUIApp.swift in Sources */,
 				B81189B42A377FFB0063BE4A /* ViewController.swift in Sources */,
 				5D755A042A336D5A00052CB9 /* WordRow.swift in Sources */,
 				5D65841E2A35ACAB006B4CC4 /* MainUIView.swift in Sources */,
 				5D7559FF2A336B2D00052CB9 /* WordList.swift in Sources */,
 				5D755A082A346D3200052CB9 /* WordBookDisplay.swift in Sources */,
-				B81189B82A37819C0063BE4A /* word.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

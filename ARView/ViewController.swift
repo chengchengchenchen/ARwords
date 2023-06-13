@@ -13,6 +13,7 @@ import SwiftUI
 class ViewController: UIViewController, ARSessionDelegate {
     @Binding var modelCount: Int // 声明一个@Binding变量来接收modelCount变量
     @Binding var type: Int
+    @Binding var wordBook: WordBookP
     var models:[Entity]=[]
     //模型向单词ID的映射
     var dict = [ModelEntity: Int]()
@@ -25,9 +26,10 @@ class ViewController: UIViewController, ARSessionDelegate {
 //    let audioPick = try! AudioFileResource.load(named: "audiodown/pick.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
 //    let audioPlace = try! AudioFileResource.load(named: "audiodown/place.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
     
-    init(modelCount: Binding<Int>, type: Binding<Int>) { // 初始化时接收modelCount变量
+    init(modelCount: Binding<Int>, type: Binding<Int>, wordBook: Binding<WordBookP>) { // 初始化时接收modelCount变量
         self._modelCount = modelCount
         self._type = type
+        self._wordBook = wordBook
         super.init(nibName: nil, bundle: nil)
     }
        
@@ -75,12 +77,16 @@ class ViewController: UIViewController, ARSessionDelegate {
             let resultAnchor = AnchorEntity(world: result.worldTransform)
             switch (self.type){
             case 1:
-                let entity = wordModel(word: words[ind], color: .black)
+                let entity = wordModel(word: wordBook.words[ind], color: .black)
+                if wordBook.words[ind].isVisited == false {
+                    wordBook.words[ind].isVisited = true
+                    wordBook.wordVisited += 1
+                }
                 resultAnchor.addChild(entity)
                 arView.scene.addAnchor(resultAnchor)
 //                entity.playAudio(audioPlace)
                 models.append(entity)
-                dict[entity] = words[ind].id
+                dict[entity] = wordBook.words[ind].id
                 
                 //print(dict[entity]!)
                 /*没效果，不明白原因
@@ -91,7 +97,7 @@ class ViewController: UIViewController, ARSessionDelegate {
                 }
                 */
                 
-                ind=(ind+1)%words.capacity
+                ind = (ind+1) % Int(wordBook.capacity)
                 break
             case 2:
                 let entity = arView.entity(at: tapLocation)
@@ -140,9 +146,9 @@ class ViewController: UIViewController, ARSessionDelegate {
     }
     
     
-    func wordModel(word: Word, color: UIColor)->ModelEntity{
-        let word_ = ModelEntity(mesh: .generateText(word.Eng), materials: [SimpleMaterial(color: color, isMetallic: false)])
-        let wordChild = ModelEntity(mesh: .generateText(wordType[word.t]+word.Cn), materials: [SimpleMaterial(color: color, isMetallic: false)])
+    func wordModel(word: WordP, color: UIColor)->ModelEntity{
+        let word_ = ModelEntity(mesh: .generateText(word.english), materials: [SimpleMaterial(color: color, isMetallic: false)])
+        let wordChild = ModelEntity(mesh: .generateText(word.chinese), materials: [SimpleMaterial(color: color, isMetallic: false)])
         //let cameraTransform = arView.cameraTransform
         //word_.look(at: cameraTransform.translation, from: word_.transform.translation, upVector: .init(0, 1, 0), relativeTo: nil)
         

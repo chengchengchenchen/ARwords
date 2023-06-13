@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WordBookDisplay: View {
-    var wordBook: WordBookP
+    @Binding var wordBook: WordBookP
     
     var body: some View {
         VStack {
@@ -49,8 +49,8 @@ struct WordBookDisplay: View {
 }
 
 struct WordBookDisplay_Previews: PreviewProvider {
-    static var wordBook: WordBookP = WordBookP(id: 1, wordMemorized: 100, batchFinished: 10, batchLeft: 90, batchSize: 10, capacity: 1000, lastVisitTime: Date(), name: "测试单词本", wordVisited: 300, words: [])
+    @State static var wordBook: WordBookP = WordBookP(id: 1, wordMemorized: 100, batchFinished: 10, batchLeft: 90, batchSize: 10, capacity: 1000, lastVisitTime: Date(), name: "测试单词本", wordVisited: 300, words: [])
     static var previews: some View {
-        WordBookDisplay(wordBook: wordBook)
+        WordBookDisplay(wordBook: $wordBook)
     }
 }
