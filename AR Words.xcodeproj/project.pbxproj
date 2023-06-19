@@ -23,13 +23,18 @@
 		5D755A0F2A348EB400052CB9 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D755A0E2A348EB400052CB9 /* PieChart.swift */; };
 		B81189B42A377FFB0063BE4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81189B32A377FFB0063BE4A /* ViewController.swift */; };
 		B81189B62A37804F0063BE4A /* ARContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81189B52A37804F0063BE4A /* ARContentView.swift */; };
+		B81F80F02A3DED58007CE396 /* HzzzJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81F80EF2A3DED58007CE396 /* HzzzJson.swift */; };
+		B81F80F32A3DEE7E007CE396 /* JsonPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81F80F22A3DEE7E007CE396 /* JsonPersistence.swift */; };
+		B851FABB2A3F4E1600571109 /* pick.wav in Resources */ = {isa = PBXBuildFile; fileRef = B851FABA2A3F4E1600571109 /* pick.wav */; };
+		B851FABD2A3F4E9A00571109 /* place.wav in Resources */ = {isa = PBXBuildFile; fileRef = B851FABC2A3F4E9A00571109 /* place.wav */; };
+		B8C9ACBE2A3F475C00E080C9 /* default.json in Resources */ = {isa = PBXBuildFile; fileRef = B8C9ACBD2A3F475C00E080C9 /* default.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5D65841D2A35ACAB006B4CC4 /* MainUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUIView.swift; sourceTree = "<group>"; };
 		5D65841F2A36FF4D006B4CC4 /* EditWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWordView.swift; sourceTree = "<group>"; };
 		5D6584212A371319006B4CC4 /* AddWordForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordForm.swift; sourceTree = "<group>"; };
-		5D7559EB2A334E7900052CB9 /* FinalProjectUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProjectUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D7559EB2A334E7900052CB9 /* AR Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR Words.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D7559EE2A334E7900052CB9 /* FinalProjectUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalProjectUIApp.swift; sourceTree = "<group>"; };
 		5D7559F02A334E7900052CB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5D7559F22A334E7D00052CB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,6 +49,11 @@
 		B81189B32A377FFB0063BE4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B81189B52A37804F0063BE4A /* ARContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARContentView.swift; sourceTree = "<group>"; };
 		B81189BB2A3787F80063BE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B81F80EF2A3DED58007CE396 /* HzzzJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HzzzJson.swift; sourceTree = "<group>"; };
+		B81F80F22A3DEE7E007CE396 /* JsonPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPersistence.swift; sourceTree = "<group>"; };
+		B851FABA2A3F4E1600571109 /* pick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pick.wav; sourceTree = "<group>"; };
+		B851FABC2A3F4E9A00571109 /* place.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = place.wav; sourceTree = "<group>"; };
+		B8C9ACBD2A3F475C00E080C9 /* default.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = default.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,7 @@
 		5D7559E22A334E7900052CB9 = {
 			isa = PBXGroup;
 			children = (
+				B8C9ACBD2A3F475C00E080C9 /* default.json */,
 				B81189B22A377FD80063BE4A /* ARView */,
 				5D7559ED2A334E7900052CB9 /* FinalProjectUI */,
 				5D7559EC2A334E7900052CB9 /* Products */,
@@ -69,7 +80,7 @@
 		5D7559EC2A334E7900052CB9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5D7559EB2A334E7900052CB9 /* FinalProjectUI.app */,
+				5D7559EB2A334E7900052CB9 /* AR Words.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,9 +124,11 @@
 		5D755A002A336B5E00052CB9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B81F80EF2A3DED58007CE396 /* HzzzJson.swift */,
 				5D755A012A336B8B00052CB9 /* Word.swift */,
 				5D755A052A3469F900052CB9 /* WordBook.swift */,
 				5D755A0C2A3487F400052CB9 /* ChartData.swift */,
+				B81F80F22A3DEE7E007CE396 /* JsonPersistence.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -131,18 +144,28 @@
 		B81189B22A377FD80063BE4A /* ARView */ = {
 			isa = PBXGroup;
 			children = (
+				B851FAB92A3F4DED00571109 /* audiodown */,
 				B81189B32A377FFB0063BE4A /* ViewController.swift */,
 				B81189B52A37804F0063BE4A /* ARContentView.swift */,
 			);
 			path = ARView;
 			sourceTree = "<group>";
 		};
+		B851FAB92A3F4DED00571109 /* audiodown */ = {
+			isa = PBXGroup;
+			children = (
+				B851FABA2A3F4E1600571109 /* pick.wav */,
+				B851FABC2A3F4E9A00571109 /* place.wav */,
+			);
+			path = audiodown;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5D7559EA2A334E7900052CB9 /* FinalProjectUI */ = {
+		5D7559EA2A334E7900052CB9 /* AR Words */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5D7559F92A334E7D00052CB9 /* Build configuration list for PBXNativeTarget "FinalProjectUI" */;
+			buildConfigurationList = 5D7559F92A334E7D00052CB9 /* Build configuration list for PBXNativeTarget "AR Words" */;
 			buildPhases = (
 				5D7559E72A334E7900052CB9 /* Sources */,
 				5D7559E82A334E7900052CB9 /* Frameworks */,
@@ -152,9 +175,9 @@
 			);
 			dependencies = (
 			);
-			name = FinalProjectUI;
+			name = "AR Words";
 			productName = FinalProjectUI;
-			productReference = 5D7559EB2A334E7900052CB9 /* FinalProjectUI.app */;
+			productReference = 5D7559EB2A334E7900052CB9 /* AR Words.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -172,7 +195,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5D7559E62A334E7900052CB9 /* Build configuration list for PBXProject "FinalProjectUI" */;
+			buildConfigurationList = 5D7559E62A334E7900052CB9 /* Build configuration list for PBXProject "AR Words" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -185,7 +208,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5D7559EA2A334E7900052CB9 /* FinalProjectUI */,
+				5D7559EA2A334E7900052CB9 /* AR Words */,
 			);
 		};
 /* End PBXProject section */
@@ -195,8 +218,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8C9ACBE2A3F475C00E080C9 /* default.json in Resources */,
 				5D7559F62A334E7D00052CB9 /* Preview Assets.xcassets in Resources */,
 				5D7559F32A334E7D00052CB9 /* Assets.xcassets in Resources */,
+				B851FABD2A3F4E9A00571109 /* place.wav in Resources */,
+				B851FABB2A3F4E1600571109 /* pick.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,11 +242,13 @@
 				5D755A0D2A3487F400052CB9 /* ChartData.swift in Sources */,
 				5D6584202A36FF4D006B4CC4 /* EditWordView.swift in Sources */,
 				5D7559EF2A334E7900052CB9 /* FinalProjectUIApp.swift in Sources */,
+				B81F80F02A3DED58007CE396 /* HzzzJson.swift in Sources */,
 				B81189B42A377FFB0063BE4A /* ViewController.swift in Sources */,
 				5D755A042A336D5A00052CB9 /* WordRow.swift in Sources */,
 				5D65841E2A35ACAB006B4CC4 /* MainUIView.swift in Sources */,
 				5D7559FF2A336B2D00052CB9 /* WordList.swift in Sources */,
 				5D755A082A346D3200052CB9 /* WordBookDisplay.swift in Sources */,
+				B81F80F32A3DEE7E007CE396 /* JsonPersistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +374,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FinalProjectUI/Preview Content\"";
@@ -365,9 +394,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = YixiaoHuang.FinalProjectUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -376,6 +408,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FinalProjectUI/Preview Content\"";
@@ -395,16 +428,19 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = YixiaoHuang.FinalProjectUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5D7559E62A334E7900052CB9 /* Build configuration list for PBXProject "FinalProjectUI" */ = {
+		5D7559E62A334E7900052CB9 /* Build configuration list for PBXProject "AR Words" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5D7559F72A334E7D00052CB9 /* Debug */,
@@ -413,7 +449,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5D7559F92A334E7D00052CB9 /* Build configuration list for PBXNativeTarget "FinalProjectUI" */ = {
+		5D7559F92A334E7D00052CB9 /* Build configuration list for PBXNativeTarget "AR Words" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5D7559FA2A334E7D00052CB9 /* Debug */,

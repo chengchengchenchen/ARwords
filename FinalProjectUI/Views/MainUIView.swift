@@ -14,7 +14,7 @@ struct MainUIView: View {
         VStack(alignment: .leading) {
             NavigationView {
                 List {
-                    // TODO ondelete
+                    // TODO on delete
                     ForEach(items.indices) { index in
                         NavigationLink {
                             WordList(wordBook: $items[index], name: items[index].name)

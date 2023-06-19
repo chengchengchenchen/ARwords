@@ -22,9 +22,9 @@ class ViewController: UIViewController, ARSessionDelegate {
     var arView:ARView{
         return self.view as! ARView
     }
-    // Load audio files
-//    let audioPick = try! AudioFileResource.load(named: "audiodown/pick.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
-//    let audioPlace = try! AudioFileResource.load(named: "audiodown/place.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
+//     Load audio files
+    let audioPick = try! AudioFileResource.load(named: "audiodown/pick.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
+    let audioPlace = try! AudioFileResource.load(named: "audiodown/place.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
     
     init(modelCount: Binding<Int>, type: Binding<Int>, wordBook: Binding<WordBookP>) { // 初始化时接收modelCount变量
         self._modelCount = modelCount
@@ -48,12 +48,12 @@ class ViewController: UIViewController, ARSessionDelegate {
         arView.environment.sceneUnderstanding.options.insert(.occlusion)
         arView.environment.sceneUnderstanding.options.insert(.physics)
         //arView.debugOptions.insert(.showSceneUnderstanding)
-        //arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
+        arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
         arView.automaticallyConfigureSession = false
         let configuration = ARWorldTrackingConfiguration()
         configuration.sceneReconstruction = .mesh
-        configuration.environmentTexturing = .automatic
-        configuration.isLightEstimationEnabled=true
+        //configuration.environmentTexturing = .automatic
+       // configuration.isLightEstimationEnabled=true
         //configuration.planeDetection=[.horizontal,.vertical]
         arView.session.run(configuration)
         
@@ -77,14 +77,15 @@ class ViewController: UIViewController, ARSessionDelegate {
             let resultAnchor = AnchorEntity(world: result.worldTransform)
             switch (self.type){
             case 1:
-                let entity = wordModel(word: wordBook.words[ind], color: .black)
+                ind = (ind) % Int(wordBook.capacity)
+                let entity = wordModel(word: wordBook.words[ind], color: (wordBook.words[ind].isMemorized == true ? UIColor.black : UIColor.red))
                 if wordBook.words[ind].isVisited == false {
                     wordBook.words[ind].isVisited = true
                     wordBook.wordVisited += 1
                 }
                 resultAnchor.addChild(entity)
                 arView.scene.addAnchor(resultAnchor)
-//                entity.playAudio(audioPlace)
+                entity.playAudio(audioPlace)
                 models.append(entity)
                 dict[entity] = wordBook.words[ind].id
                 
@@ -105,7 +106,7 @@ class ViewController: UIViewController, ARSessionDelegate {
                     let transform = Transform(scale: .init(x: 0.3, y: 0.3, z: 0.3),rotation: simd_quatf(),translation:[0,0,0])
                     
                     entity?.move(to: transform, relativeTo: entity, duration: 1, timingFunction: .easeInOut)
-//                    entity?.playAudio(audioPick)
+                    entity?.playAudio(audioPick)
                     DispatchQueue.main.asyncAfter(deadline: .now()+1){ [self] in
                         
                         entity?.removeFromParent()
@@ -113,6 +114,25 @@ class ViewController: UIViewController, ARSessionDelegate {
                             models.remove(at: index)
                         }
                         //print(dict[entity as! ModelEntity]!)
+                        // use indice to traverse the wordbook and delete the oblect whose id is dict[entity as! ModelEntity]
+                        let indice = dict[entity as! ModelEntity]
+                        for index in wordBook.words.indices {
+                            
+                            if wordBook.words[index].id == indice {
+                                if wordBook.words[index].isMemorized == false
+                                {
+                                    wordBook.words[index].isMemorized = true
+                                    wordBook.wordMemorized += 1
+                                    
+                                    if wordBook.words[index].isVisited == false {
+                                        wordBook.words[index].isVisited = true
+                                        wordBook.wordVisited += 1
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
                         dict.removeValue(forKey: entity as! ModelEntity)
                     }
                 }

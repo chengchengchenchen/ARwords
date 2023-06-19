@@ -16,6 +16,8 @@ struct WordList: View {
     @State var isShowArView = false
     
     var name: String
+    @State var editThis: EditWordView = EditWordView(english: .constant(""), chinese: .constant(""), isShowing: .constant(false))
+    
     
     var body: some View {
 
@@ -53,17 +55,17 @@ struct WordList: View {
                 HStack{
                     WordRow(english: word.english, chinese: word.chinese)
                     .swipeActions(edge:.leading) {
-                        // swipe left to edit word
-                        //  navigate to EditWordView
+                        // swipe left to delete or mark forgot
                         Button("编辑") {
-                            // set the state variable to show the alert
-//                            isShowingAlert = true
-                            isShowingActionSheet.toggle()
+                            isShowingActionSheet = true
+                            print(isShowingActionSheet)
+                            print(index)
+                            editThis = EditWordView(
+                                english: $wordBook.words[index].english,
+                                chinese: $wordBook.words[index].chinese,
+                                isShowing: $isShowingActionSheet)
                         }
                         .tint(.blue)
-//                                    .alert(isPresented: $isShowingAlert) {
-//                                        Alert(title: Text("编辑"), message: Text("您确定要编辑此项吗?"), primaryButton: .default(Text("确定")), secondaryButton: .cancel())
-//                                    }
                         Button("删除") {
                             // delete the selected WordP object
                             if (wordBook.words[index].isMemorized) {
@@ -74,6 +76,7 @@ struct WordList: View {
                             }
                             wordBook.capacity -= 1
                             wordBook.words.remove(at: index)
+//                            JsonPersistence.storeWordBooks(object: WordBooks)
                         }
                         .tint(.red)
                         if (word.isMemorized) {
@@ -98,27 +101,16 @@ struct WordList: View {
                     }
                     
                     Spacer()
+                    //  navigate to EditWordView
+                    Button("编辑"){
+                    }
+                    .sheet(isPresented: $isShowingActionSheet, content: {editThis})
+                    .hidden()
                     //
 //                                Button($wordBook.words[index].isMemorized.wrappedValue ? "忘了？" : "会啦！"){
 //                                    wordBook.words[index].isMemorized.toggle()
 //                                }
 //                                .foregroundColor(.white)
-                Button("编辑"){
-//                    isShowingEditWordView.toggle()
-//                    isShowingActionSheet.toggle()
-                    print(isShowingEditWordView)
-                }
-//                                Toggle(isOn: $wordBook.words[index].isMemorized) {
-//                                    Text("已背")
-//                                }
-//
-//                            .alert(isPresented: $isShowingAlert) {
-//                                Alert(title: Text("编辑"), message: Text("您确定要编辑此项吗？"), primaryButton: .default(Text("确定")), secondaryButton: .cancel())
-//                            }
-                .sheet(isPresented: $isShowingActionSheet, content: {
-                    EditWordView(english: $wordBook.words[index].english, chinese: $wordBook.words[index].chinese, isShowing: $isShowingActionSheet)
-                })
-                .hidden()
             }
                 .listRowBackground(word.isMemorized ? Color.green : Color.secondary)
             }
@@ -130,7 +122,7 @@ struct WordList: View {
 //        if wordBook.words.index(atOffsets: offsets)
 //        wordBook.words.remove(atOffsets: offsets)
 //    }
-//    
+//
 //    func addItem() {
 //        wordBook.words.append(newItem)
 //        newItem = ""

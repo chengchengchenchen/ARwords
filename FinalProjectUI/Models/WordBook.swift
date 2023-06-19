@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WordBookP: Identifiable {
+struct WordBookP: Identifiable, Codable, Equatable {
     
     var id: Int
     var wordMemorized: Int64

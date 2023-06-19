@@ -89,10 +89,11 @@ struct ARViewController: UIViewControllerRepresentable {
     
 }
 
-//#if DEBUG
-//struct ARContentView_Previews : PreviewProvider {
-//    static var previews: some View {
-//        ARContentView()
-//    }
-//}
-//#endif
+#if DEBUG
+struct ARContentView_Previews : PreviewProvider {
+    static var previews: some View {
+        @State var WordBooks: [WordBookP] = JsonPersistence.loadWordBooks()
+        ARContentView(wordBook: $WordBooks[0])
+    }
+}
+#endif
