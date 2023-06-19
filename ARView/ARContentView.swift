@@ -30,11 +30,13 @@ struct ARContentView : View {
                 Spacer()
                 Button(action: {
                     type = 1;
+
                 }){
                     VStack{
                         // place another word
                         Image(systemName: "plus")
                             .foregroundColor(type == 1 ? .red : .blue)
+
                     }
                     
                 }.padding()

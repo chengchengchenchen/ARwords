@@ -71,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				B8C9ACBD2A3F475C00E080C9 /* default.json */,
+				B851FABA2A3F4E1600571109 /* pick.wav */,
+				B851FABC2A3F4E9A00571109 /* place.wav */,
 				B81189B22A377FD80063BE4A /* ARView */,
 				5D7559ED2A334E7900052CB9 /* FinalProjectUI */,
 				5D7559EC2A334E7900052CB9 /* Products */,
@@ -154,8 +156,6 @@
 		B851FAB92A3F4DED00571109 /* audiodown */ = {
 			isa = PBXGroup;
 			children = (
-				B851FABA2A3F4E1600571109 /* pick.wav */,
-				B851FABC2A3F4E9A00571109 /* place.wav */,
 			);
 			path = audiodown;
 			sourceTree = "<group>";

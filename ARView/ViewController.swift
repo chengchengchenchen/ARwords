@@ -23,8 +23,8 @@ class ViewController: UIViewController, ARSessionDelegate {
         return self.view as! ARView
     }
 //     Load audio files
-    let audioPick = try! AudioFileResource.load(named: "audiodown/pick.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
-    let audioPlace = try! AudioFileResource.load(named: "audiodown/place.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
+    let audioPick = try! AudioFileResource.load(named: "pick.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
+    let audioPlace = try! AudioFileResource.load(named: "place.wav", in: nil, inputMode: .spatial, loadingStrategy: .preload, shouldLoop: false)
     
     init(modelCount: Binding<Int>, type: Binding<Int>, wordBook: Binding<WordBookP>) { // 初始化时接收modelCount变量
         self._modelCount = modelCount
@@ -52,9 +52,9 @@ class ViewController: UIViewController, ARSessionDelegate {
         arView.automaticallyConfigureSession = false
         let configuration = ARWorldTrackingConfiguration()
         configuration.sceneReconstruction = .mesh
-        //configuration.environmentTexturing = .automatic
-       // configuration.isLightEstimationEnabled=true
-        //configuration.planeDetection=[.horizontal,.vertical]
+        configuration.environmentTexturing = .automatic
+        configuration.isLightEstimationEnabled=true
+        configuration.planeDetection=[.horizontal,.vertical]
         arView.session.run(configuration)
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -105,8 +105,9 @@ class ViewController: UIViewController, ARSessionDelegate {
                 if entity?.children.first != nil{
                     let transform = Transform(scale: .init(x: 0.3, y: 0.3, z: 0.3),rotation: simd_quatf(),translation:[0,0,0])
                     
-                    entity?.move(to: transform, relativeTo: entity, duration: 1, timingFunction: .easeInOut)
+                    
                     entity?.playAudio(audioPick)
+//                    entity?.move(to: transform, relativeTo: entity, duration: 1, timingFunction: .easeInOut)
                     DispatchQueue.main.asyncAfter(deadline: .now()+1){ [self] in
                         
                         entity?.removeFromParent()
@@ -115,22 +116,22 @@ class ViewController: UIViewController, ARSessionDelegate {
                         }
                         //print(dict[entity as! ModelEntity]!)
                         // use indice to traverse the wordbook and delete the oblect whose id is dict[entity as! ModelEntity]
-                        let indice = dict[entity as! ModelEntity]
-                        for index in wordBook.words.indices {
-                            
-                            if wordBook.words[index].id == indice {
-                                if wordBook.words[index].isMemorized == false
-                                {
-                                    wordBook.words[index].isMemorized = true
-                                    wordBook.wordMemorized += 1
-                                    
-                                    if wordBook.words[index].isVisited == false {
-                                        wordBook.words[index].isVisited = true
-                                        wordBook.wordVisited += 1
-                                    }
-                                }
-                            }
-                        }
+//                        let indice = dict[entity as! ModelEntity]
+//                        for index in wordBook.words.indices {
+//                            
+//                            if wordBook.words[index].id == indice {
+//                                if wordBook.words[index].isMemorized == false
+//                                {
+//                                    wordBook.words[index].isMemorized = true
+//                                    wordBook.wordMemorized += 1
+//                                    
+//                                    if wordBook.words[index].isVisited == false {
+//                                        wordBook.words[index].isVisited = true
+//                                        wordBook.wordVisited += 1
+//                                    }
+//                                }
+//                            }
+//                        }
                         
                         
                         dict.removeValue(forKey: entity as! ModelEntity)
